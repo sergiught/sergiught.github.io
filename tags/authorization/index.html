@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Authorization · sergiu.dev</title>
+<meta name="description" content="Field notes from a software engineer — tooling, infrastructure, graphics, and the occasional rant." />
+
+<meta property="og:title" content="Authorization · sergiu.dev" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sergiu.dev/tags/authorization/" />
+<meta property="og:description" content="Field notes from a software engineer — tooling, infrastructure, graphics, and the occasional rant." />
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://utteranc.es; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; frame-src https://utteranc.es; connect-src 'self' https://api.github.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<script>
+(function(){
+  try {
+    var t = localStorage.getItem('cyberdeck-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch(e){}
+})();
+</script>
+
+
+<link rel="stylesheet" href="/css/fonts.min.58e26fa2c9ba936cf6d1d0cdea6734489c880a988dc04f98f0825654e5607cec.css" integrity="sha256-WOJvosm6k2z20dDN6mc0SJyICpiNwE&#43;Y8IJWVOVgfOw=">
+
+
+<link rel="stylesheet" href="/css/main.min.f2618ecdb1e6115e3d3ab15bf6c91b47adc0f941214e33bad286b71cc9b5595d.css" integrity="sha256-8mGOzbHmEV49OrFb9skbR63A&#43;UEhTjO60oa3HMm1WV0=">
+
+<style>:root{--accent:#c8ff00;--accent-glow:rgba(200,255,0,0.45);--accent-soft:rgba(200,255,0,0.18);}@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--accent:#4a6800;--accent-glow:rgba(74,104,0,0.22);--accent-soft:rgba(74,104,0,0.10);}}[data-theme="dark"]{--accent:#c8ff00;--accent-glow:rgba(200,255,0,0.45);--accent-soft:rgba(200,255,0,0.18);}[data-theme="light"]{--accent:#4a6800;--accent-glow:rgba(74,104,0,0.22);--accent-soft:rgba(74,104,0,0.10);}</style>
+
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:image" content="https://sergiu.dev/og-image.png">
+<link rel="alternate" type="application/rss+xml" href="https://sergiu.dev/tags/authorization/index.xml" title="sergiu.dev">
+
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+  <div class="col-num">00</div>
+  <a class="brand" href="/">
+    <span class="dot"></span>
+    <b>SERGIU GHITEA</b>
+    <span class="brand-sub">// SOFTWARE ENGINEER</span>
+  </a>
+  <nav class="links"><a href="/posts/"><span class="n">01</span>POSTS</a><a href="/aboutme/"><span class="n">02</span>ABOUT</a><a href="/#contact"><span class="n">03</span>CONTACT</a><button class="theme-toggle" type="button" aria-label="Toggle theme">
+      <span class="t-icon t-icon-dark" aria-hidden="true">◐</span>
+      <span class="t-icon t-icon-light" aria-hidden="true">◑</span>
+      <span class="t-label">THEME</span>
+    </button>
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+  <div class="nav-mobile-head">
+    <span class="brand-mark">
+      <span class="dot"></span>
+      <b>SERGIU GHITEA</b>
+    </span>
+    <button class="nav-mobile-close" type="button" aria-label="Close menu">×</button>
+  </div>
+  <nav class="nav-mobile-links"><a href="/posts/">
+        <span class="n">01</span>
+        <span class="lab">POSTS</span>
+        <span class="arr">→</span>
+      </a><a href="/aboutme/">
+        <span class="n">02</span>
+        <span class="lab">ABOUT</span>
+        <span class="arr">→</span>
+      </a><a href="/#contact">
+        <span class="n">03</span>
+        <span class="lab">CONTACT</span>
+        <span class="arr">→</span>
+      </a></nav>
+  <div class="nav-mobile-foot">
+    <span class="meta"><span class="pulse"></span>SYSTEM ONLINE</span>
+  </div>
+</div>
+
+  <div class="section-head">
+  <div class="col-num">→</div>
+  <div class="title"><h2>// <b>authorization</b></h2></div>
+  <div class="meta"><span class="pulse"></span>1 TOTAL</div>
+</div>
+
+<div class="list-rows">
+  
+  <a class="list-row" href="/posts/openfga-primer/">
+    <span class="num">01</span>
+    <span class="date">2026.05.09</span>
+    <span class="title">
+      <h3>OpenFGA: the authorization layer your code keeps trying to reinvent</h3>
+      <span class="desc">Fine-grained authorization, modeled as relationships. A 10-minute primer on OpenFGA, the open-source Zanzibar implementation that takes authz logic out of your handlers.</span>
+    </span>
+    <span class="arr">→</span>
+  </a>
+  
+</div>
+
+
+
+  <footer>
+  <div class="col-num">04</div>
+  <div class="body">
+    
+      
+      <div class="col">
+        <h4>// SITE</h4>
+        <ul>
+          
+          <li><a href="/">HOME <small>/</small></a></li>
+          
+          <li><a href="/posts/">POSTS <small>/posts</small></a></li>
+          
+          <li><a href="/aboutme/">ABOUT <small>/about</small></a></li>
+          
+        </ul>
+      </div>
+      
+      <div class="col">
+        <h4>// ELSEWHERE</h4>
+        <ul>
+          
+          <li><a href="https://github.com/sergiught" target="_blank" rel="noopener noreferrer">GITHUB <small>↗</small></a></li>
+          
+          <li><a class="obf-email" href="#" data-u="mail" data-d="sergiu.dev" rel="nofollow">EMAIL <small>↗</small></a></li>
+          
+        </ul>
+      </div>
+      
+      <div class="col">
+        <h4>// META</h4>
+        <ul>
+          
+          <li><a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">BUILT WITH <small>Hugo</small></a></li>
+          
+          <li><a href="https://github.com/sergiught/sergiught.github.io" target="_blank" rel="noopener noreferrer">SOURCE <small>↗ GH</small></a></li>
+          
+        </ul>
+      </div>
+      
+    
+    <div class="col end">
+      <span class="word">SERGIU<span class="accent">.dev</span></span>
+      <span class="meta">© 2026 Sergiu Ghitea<br/>Field notes under CC-BY-4.0<br/>Built with <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="baseline">
+  <div class="group">
+    <span><span class="pulse"></span>SYSTEM ONLINE · UPTIME 99.99%</span>
+  </div>
+  <div class="group">
+    <span>BUILT WITH HUGO</span>
+    <span>BUILD 2026.05.11</span>
+  </div>
+</div>
+
+</div>
+<script>
+(function(){
+  
+  var btns = document.querySelectorAll('.theme-toggle');
+  if (!btns.length) return;
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme');
+      if (!current) {
+        current = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('cyberdeck-theme', next); } catch(e){}
+    });
+  });
+})();
+(function(){
+  
+  var burger = document.querySelector('.nav-burger');
+  var menu = document.getElementById('nav-mobile');
+  if (!burger || !menu) return;
+  var closeBtn = menu.querySelector('.nav-mobile-close');
+
+  function open(){
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden', 'false');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-mobile-open');
+  }
+  function shut(){
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-mobile-open');
+  }
+
+  burger.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', shut);
+  
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', shut);
+  });
+  
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && menu.classList.contains('open')) shut();
+  });
+  
+  window.addEventListener('resize', function(){
+    if (window.innerWidth > 760 && menu.classList.contains('open')) shut();
+  });
+})();
+(function(){
+  var el = document.getElementById('rec-clock');
+  if (!el) return;
+  var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
+  function tick(){
+    var d = new Date();
+    el.textContent = pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+(function(){
+  var at = String.fromCharCode(64);
+  var els = document.querySelectorAll('.obf-email');
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    var u = el.getAttribute('data-u');
+    var d = el.getAttribute('data-d');
+    if (!u || !d) continue;
+    var addr = u + at + d;
+    el.setAttribute('href', 'mailto:' + addr);
+    var txt = el.querySelector('.obf-text');
+    if (txt) txt.textContent = addr;
+  }
+})();
+(function(){
+  
+  
+  
+  var langs = ['bash','sh','shell','zsh','fish'];
+  var sel = langs.map(function(l){ return 'code.language-'+l; }).join(',');
+
+  function span(cls, text) {
+    var s = document.createElement('span');
+    s.className = cls;
+    s.textContent = text;
+    return s;
+  }
+
+  function tokenize(text, firstSlot) {
+    var out = [];
+    var parts = text.split(/(\s+)/);
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      if (p === '') continue;
+      if (/^\s+$/.test(p)) { out.push(document.createTextNode(p)); continue; }
+
+      if (firstSlot) {
+        firstSlot = false;
+        if (!/^[#$()<>|&;`]/.test(p)) { out.push(span('cmd', p)); continue; }
+      }
+
+      if (/^--?[a-zA-Z]/.test(p)) { out.push(span('flag', p)); continue; }
+      if (/^\/[\w.-]/.test(p) || /^~(\/|$)/.test(p) || /^\.\.?\//.test(p)) {
+        out.push(span('path', p));
+        continue;
+      }
+      if (/^[+-]?\d+(\.\d+)?[KMGTPkmgtp]?[Bb]?$/.test(p) && p.length <= 8) {
+        out.push(span('size', p));
+        continue;
+      }
+
+      out.push(document.createTextNode(p));
+    }
+    return out;
+  }
+
+  document.querySelectorAll(sel).forEach(function(code){
+    code.querySelectorAll('.cl').forEach(function(line){
+      var sawFirst = false;
+      var children = Array.from(line.childNodes);
+      children.forEach(function(node){
+        if (node.nodeType !== Node.TEXT_NODE) {
+          if (!sawFirst && node.textContent.trim() !== '') sawFirst = true;
+          return;
+        }
+        var nodes = tokenize(node.textContent, !sawFirst);
+        if (nodes.length === 0) return;
+        if (!sawFirst && nodes.some(function(n){
+          return n.nodeType === Node.ELEMENT_NODE || (n.textContent && n.textContent.trim() !== '');
+        })) sawFirst = true;
+        var frag = document.createDocumentFragment();
+        nodes.forEach(function(n){ frag.appendChild(n); });
+        line.replaceChild(frag, node);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

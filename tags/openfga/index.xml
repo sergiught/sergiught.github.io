@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Openfga on sergiu.dev</title>
+    <link>https://sergiu.dev/tags/openfga/</link>
+    <description>Recent content in Openfga on sergiu.dev</description>
+    <generator>Hugo</generator>
+    <language>en_US</language>
+    <lastBuildDate>Sat, 09 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://sergiu.dev/tags/openfga/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenFGA: the authorization layer your code keeps trying to reinvent</title>
+      <link>https://sergiu.dev/posts/openfga-primer/</link>
+      <pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/posts/openfga-primer/</guid>
+      <description>&lt;p&gt;Open any backend that&amp;rsquo;s three years old. Find the &lt;code&gt;if user.role == &amp;quot;admin&amp;quot;&lt;/code&gt; in your handlers. Now find the second copy three files away, slightly different. The third inside a service method. The fourth, in a database query.&lt;/p&gt;&#xA;&lt;p&gt;You&amp;rsquo;re not maintaining authorization logic. You&amp;rsquo;re scattering it.&lt;/p&gt;&#xA;&lt;p&gt;This is the problem &lt;a href=&#34;https://openfga.dev&#34;&gt;OpenFGA&lt;/a&gt; was built to solve. It&amp;rsquo;s the open-source implementation of Google&amp;rsquo;s &lt;a href=&#34;https://research.google/pubs/zanzibar-googles-consistent-global-authorization-system/&#34;&gt;Zanzibar paper&lt;/a&gt;, the system that powers Google Drive&amp;rsquo;s sharing model. Instead of asking &amp;ldquo;what role does this user have?&amp;rdquo;, you ask &amp;ldquo;is there a relationship between this user and this object that lets them do this?&amp;rdquo;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

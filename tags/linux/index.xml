@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on sergiu.dev</title>
+    <link>https://sergiu.dev/tags/linux/</link>
+    <description>Recent content in Linux on sergiu.dev</description>
+    <generator>Hugo</generator>
+    <language>en_US</language>
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://sergiu.dev/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An encrypted Arch Linux install you can actually maintain</title>
+      <link>https://sergiu.dev/posts/archlinux/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/posts/archlinux/</guid>
+      <description>&lt;p&gt;Most Arch install guides hand you a working system. They don&amp;rsquo;t hand you one you can fix at 3am when the bootloader misbehaves.&lt;/p&gt;&#xA;&lt;p&gt;This is the install I run on my own machines. Full disk encryption with LUKS, dynamic volumes via LVM, copy-pasteable commands, and just enough explanation that you&amp;rsquo;ll know what to undo when something inevitably goes sideways.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been running Arch for years. The thing that keeps me here isn&amp;rsquo;t speed, isn&amp;rsquo;t the AUR, isn&amp;rsquo;t rolling releases. It&amp;rsquo;s that every part of the system is something I picked, which means every part is something I can debug later.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

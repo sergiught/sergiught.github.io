@@ -1,0 +1,8 @@
+# /ai.txt — preferences for AI/ML scrapers (emerging convention, not yet
+# standardized). Authoritative blocking is at the edge (Cloudflare bot mgmt)
+# and the per-user-agent rules in /robots.txt.
+
+User-Agent: *
+Disallow-AI-Training: /
+Disallow-AI-Search: /
+Disallow-AI-Generative: /

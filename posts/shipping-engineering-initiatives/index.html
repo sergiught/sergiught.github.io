@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Most engineering initiatives don&#39;t fail at execution · sergiu.dev</title>
+<meta name="description" content="Every initiative I&#39;ve watched die had the same shape in the post-mortem. Not bad code. Not bad people. Bad start. A four-step playbook for the part most teams skip." />
+
+<meta property="og:title" content="Most engineering initiatives don&#39;t fail at execution · sergiu.dev" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sergiu.dev/posts/shipping-engineering-initiatives/" />
+<meta property="og:description" content="Every initiative I&#39;ve watched die had the same shape in the post-mortem. Not bad code. Not bad people. Bad start. A four-step playbook for the part most teams skip." />
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://utteranc.es; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; frame-src https://utteranc.es; connect-src 'self' https://api.github.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<script>
+(function(){
+  try {
+    var t = localStorage.getItem('cyberdeck-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch(e){}
+})();
+</script>
+
+
+<link rel="stylesheet" href="/css/fonts.min.58e26fa2c9ba936cf6d1d0cdea6734489c880a988dc04f98f0825654e5607cec.css" integrity="sha256-WOJvosm6k2z20dDN6mc0SJyICpiNwE&#43;Y8IJWVOVgfOw=">
+
+
+<link rel="stylesheet" href="/css/main.min.f2618ecdb1e6115e3d3ab15bf6c91b47adc0f941214e33bad286b71cc9b5595d.css" integrity="sha256-8mGOzbHmEV49OrFb9skbR63A&#43;UEhTjO60oa3HMm1WV0=">
+
+<style>:root{--accent:#c8ff00;--accent-glow:rgba(200,255,0,0.45);--accent-soft:rgba(200,255,0,0.18);}@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--accent:#4a6800;--accent-glow:rgba(74,104,0,0.22);--accent-soft:rgba(74,104,0,0.10);}}[data-theme="dark"]{--accent:#c8ff00;--accent-glow:rgba(200,255,0,0.45);--accent-soft:rgba(200,255,0,0.18);}[data-theme="light"]{--accent:#4a6800;--accent-glow:rgba(74,104,0,0.22);--accent-soft:rgba(74,104,0,0.10);}</style>
+
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:image" content="https://sergiu.dev/og-image.png">
+
+
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+  <div class="col-num">00</div>
+  <a class="brand" href="/">
+    <span class="dot"></span>
+    <b>SERGIU GHITEA</b>
+    <span class="brand-sub">// SOFTWARE ENGINEER</span>
+  </a>
+  <nav class="links"><a href="/posts/"><span class="n">01</span>POSTS</a><a href="/aboutme/"><span class="n">02</span>ABOUT</a><a href="/#contact"><span class="n">03</span>CONTACT</a><button class="theme-toggle" type="button" aria-label="Toggle theme">
+      <span class="t-icon t-icon-dark" aria-hidden="true">◐</span>
+      <span class="t-icon t-icon-light" aria-hidden="true">◑</span>
+      <span class="t-label">THEME</span>
+    </button>
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+  <div class="nav-mobile-head">
+    <span class="brand-mark">
+      <span class="dot"></span>
+      <b>SERGIU GHITEA</b>
+    </span>
+    <button class="nav-mobile-close" type="button" aria-label="Close menu">×</button>
+  </div>
+  <nav class="nav-mobile-links"><a href="/posts/">
+        <span class="n">01</span>
+        <span class="lab">POSTS</span>
+        <span class="arr">→</span>
+      </a><a href="/aboutme/">
+        <span class="n">02</span>
+        <span class="lab">ABOUT</span>
+        <span class="arr">→</span>
+      </a><a href="/#contact">
+        <span class="n">03</span>
+        <span class="lab">CONTACT</span>
+        <span class="arr">→</span>
+      </a></nav>
+  <div class="nav-mobile-foot">
+    <span class="meta"><span class="pulse"></span>SYSTEM ONLINE</span>
+  </div>
+</div>
+
+  <article class="post-page">
+  <div class="col-num">↳</div>
+  <div class="article-wrap">
+    <div class="crumb">
+      <a href="/">HOME</a>
+       / <a href="/posts/">POSTS</a>
+      / <span>MOST ENGINEERING INITIATIVES DON&#39;T FAIL AT EXECUTION</span>
+    </div>
+    <div class="post-meta">
+      <span>2026.05.10</span>
+      <span>5 MIN READ</span>
+      <span class="ok">// ENGINEERING</span>
+    </div>
+    <h1 class="post-title">Most engineering initiatives don&#39;t fail at execution</h1>
+    
+    <div class="cover-hero"><img src="/images/shipping-engineering-initiatives.jpg" alt="Most engineering initiatives don&#39;t fail at execution" /></div>
+    
+    <div class="content">
+      <p>Every initiative I&rsquo;ve watched die looked the same in the post-mortem.</p>
+<p>Not &ldquo;we chose the wrong stack.&rdquo; Not &ldquo;the team underperformed.&rdquo; It was always some version of: <em>we didn&rsquo;t really understand what we were building until halfway through.</em></p>
+<p>The interesting part is that this is fixable. It just requires the one step most engineers skip, because it doesn&rsquo;t feel like work.</p>
+<h2 id="the-work-that-doesnt-look-like-work">The work that doesn&rsquo;t look like work</h2>
+<p>Senior engineers spend more time on planning than juniors realize. That&rsquo;s not a slogan, it&rsquo;s a bias I&rsquo;ve watched play out in every team I&rsquo;ve worked with: the most reliable shippers are the ones who appear to be doing nothing for the first week of a project. They&rsquo;re not. They&rsquo;re doing the part that determines whether the next three months go well.</p>
+<p>The framework below is what that &ldquo;nothing&rdquo; actually looks like. Four steps, each with a concrete output, plus the thing nobody talks about.</p>
+<h2 id="step-1-do-your-homework">Step 1: Do your homework</h2>
+<blockquote>
+<p><strong>Output:</strong> A contract of facts.</p>
+</blockquote>
+<p>Start from the objective and walk backwards. <em>What needs to be added, changed, or removed to get from here to there?</em> Most initiatives skip this part because the team has a rough vibe of what needs doing. But vibes don&rsquo;t survive contact with the codebase.</p>
+<p>Concretely:</p>
+<ul>
+<li><strong>Talk to customers.</strong> Not &ldquo;what do you want&rdquo;, but &ldquo;show me what you do today.&rdquo; Insights live in the friction, not in the requests.</li>
+<li><strong>Look at the metrics.</strong> Whatever you&rsquo;re about to change, you need its baseline. Otherwise you can&rsquo;t tell if you made it better.</li>
+<li><strong>Read the existing code.</strong> Not skim. Read. Look for patterns you can re-use, places that need a refactor first, and the reasons something is the way it is.</li>
+<li><strong>Survey competitors.</strong> They&rsquo;ve already failed at the things you&rsquo;re about to discover. Cheap way to learn.</li>
+</ul>
+<p>Then ask the harder questions. <em>Can the change ship in a way that&rsquo;s compatible with existing patterns?</em> A change that requires every consumer to migrate is not a change. It&rsquo;s a project. <em>Will it break customers?</em> If yes, what does the deprecation path look like? <em>Is everything you&rsquo;re proposing actually a must-have, or are some of these &ldquo;wouldn&rsquo;t it be nice&rdquo;?</em> The MVP question is unsexy and unavoidable.</p>
+<p>The output of this step is a <strong>contract of facts</strong>. Not opinions. Facts you can point at when someone says &ldquo;but couldn&rsquo;t we just…&rdquo; three weeks in.</p>
+<h2 id="step-2-plan-the-work">Step 2: Plan the work</h2>
+<blockquote>
+<p><strong>Output:</strong> Objectives.</p>
+</blockquote>
+<p>You now have facts. Turn them into milestones. Real ones. Not &ldquo;Q3: ship the thing&rdquo; but &ldquo;by date X, capability Y is in production behind a feature flag, behind a percentage rollout, with metric Z reporting.&rdquo;</p>
+<p>Three rules I keep relearning:</p>
+<ol>
+<li><strong>Tasks need to fit in someone&rsquo;s head.</strong> If a ticket needs a paragraph of context to even understand, it&rsquo;s not a ticket. It&rsquo;s a project. Break it down further.</li>
+<li><strong>Acceptance criteria belong on the ticket.</strong> Not in someone&rsquo;s head. Not in a Slack thread. On the ticket. The person doing the work shouldn&rsquo;t have to rediscover what &ldquo;done&rdquo; means.</li>
+<li><strong>Plan for failure explicitly.</strong> What can go wrong? What&rsquo;s the mitigation? The exercise isn&rsquo;t about being pessimistic. It&rsquo;s about not having to invent a contingency at 3am when something does break.</li>
+</ol>
+<p>The output is a set of <strong>objectives</strong> the team can actually argue about, because they&rsquo;re concrete enough to disagree on.</p>
+<h2 id="step-3-bring-it-to-the-team">Step 3: Bring it to the team</h2>
+<blockquote>
+<p><strong>Output:</strong> A plan that&rsquo;s tangible enough to execute.</p>
+</blockquote>
+<p>This is where most ICs feel the urge to skip ahead and just start coding. Don&rsquo;t. The team discussion isn&rsquo;t a formality. It&rsquo;s the part where your homework either survives contact with reality, or doesn&rsquo;t.</p>
+<p>The right posture going in: <strong>be prepared to be challenged on anything.</strong> Including the parts you thought were obvious. The team will see things you missed. They will also be the ones who have to live with the plan.</p>
+<p>Engage them as participants, not as an audience. Initiatives planned in a vacuum and presented as fait accompli get sandbagged in slow-motion later. The team that helped shape the plan has a reason to want it to work.</p>
+<p>End the meeting with a consensus on <strong>scope</strong>: not on every detail, but on the boundaries. What&rsquo;s in, what&rsquo;s out, what&rsquo;s &ldquo;later.&rdquo;</p>
+<h2 id="step-4-execute">Step 4: Execute</h2>
+<blockquote>
+<p><strong>Output:</strong> Shipped software.</p>
+</blockquote>
+<p>The execution loop is unglamorous and well-known:</p>
+<ol>
+<li>Write the test case.</li>
+<li>Make it pass.</li>
+<li>Write the documentation.</li>
+<li>Refactor.</li>
+</ol>
+<p>The point isn&rsquo;t TDD-evangelism. It&rsquo;s that the discipline keeps you honest about what &ldquo;done&rdquo; means at the unit level, the way Step 2 kept you honest at the milestone level.</p>
+<p>What&rsquo;s harder, and what people don&rsquo;t write enough about: <strong>execution is mostly communication.</strong></p>
+<p>A weekly summary, sent on the same day each week, with three sections: highlights, lowlights, next steps. That&rsquo;s the whole format. It&rsquo;s boring. It works because it forces you to face reality every Friday and to make that reality visible to the people who are betting on you to deliver.</p>
+<p>Transparency has a cost: it means showing the bumps. The alternative is worse. The people who depend on your work find out about problems too late to help.</p>
+<h2 id="the-thing-nobody-talks-about">The thing nobody talks about</h2>
+<p>The four steps look linear in a diagram. They are not. You will be in step 4 and discover something that sends you back to step 1. That&rsquo;s not failure. That&rsquo;s the system working. The original homework was based on what you knew then; what you know now is more.</p>
+<p>The discipline isn&rsquo;t to follow the steps perfectly. It&rsquo;s to <em>name what step you&rsquo;re in when something breaks</em>, so you know whether you&rsquo;re addressing the actual problem or just patching a symptom further downstream.</p>
+<h2 id="what-separates-seniors-from-juniors">What separates seniors from juniors</h2>
+<p>Not the coding. Anyone can write code. The thing that compounds with experience is <strong>the willingness to invest in the early steps when the pressure is to skip them.</strong></p>
+<p>There is always a stakeholder asking why you haven&rsquo;t started yet. There&rsquo;s always a calendar that says you should be coding by now. The senior engineer&rsquo;s job, the actual job, is to know when &ldquo;let&rsquo;s just start&rdquo; is going to cost the team a multiple of what you&rsquo;d save by doing the homework.</p>
+<p>Skip step 1 once and you&rsquo;ll feel the pain in step 4. Skip it consistently and you&rsquo;ll be the engineer who&rsquo;s always shipping late and isn&rsquo;t sure why.</p>
+
+    </div>
+    <div class="post-foot">
+      <span>↳ <a href="/posts/">ALL POSTS</a></span>
+      <span>1050 WORDS</span>
+    </div>
+    
+      <script src="https://utteranc.es/client.js"
+        repo="sergiught/sergiught.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    
+  </div>
+</article>
+
+  <footer>
+  <div class="col-num">04</div>
+  <div class="body">
+    
+      
+      <div class="col">
+        <h4>// SITE</h4>
+        <ul>
+          
+          <li><a href="/">HOME <small>/</small></a></li>
+          
+          <li><a href="/posts/">POSTS <small>/posts</small></a></li>
+          
+          <li><a href="/aboutme/">ABOUT <small>/about</small></a></li>
+          
+        </ul>
+      </div>
+      
+      <div class="col">
+        <h4>// ELSEWHERE</h4>
+        <ul>
+          
+          <li><a href="https://github.com/sergiught" target="_blank" rel="noopener noreferrer">GITHUB <small>↗</small></a></li>
+          
+          <li><a class="obf-email" href="#" data-u="mail" data-d="sergiu.dev" rel="nofollow">EMAIL <small>↗</small></a></li>
+          
+        </ul>
+      </div>
+      
+      <div class="col">
+        <h4>// META</h4>
+        <ul>
+          
+          <li><a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">BUILT WITH <small>Hugo</small></a></li>
+          
+          <li><a href="https://github.com/sergiught/sergiught.github.io" target="_blank" rel="noopener noreferrer">SOURCE <small>↗ GH</small></a></li>
+          
+        </ul>
+      </div>
+      
+    
+    <div class="col end">
+      <span class="word">SERGIU<span class="accent">.dev</span></span>
+      <span class="meta">© 2026 Sergiu Ghitea<br/>Field notes under CC-BY-4.0<br/>Built with <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="baseline">
+  <div class="group">
+    <span><span class="pulse"></span>SYSTEM ONLINE · UPTIME 99.99%</span>
+  </div>
+  <div class="group">
+    <span>BUILT WITH HUGO</span>
+    <span>BUILD 2026.05.11</span>
+  </div>
+</div>
+
+</div>
+<script>
+(function(){
+  
+  var btns = document.querySelectorAll('.theme-toggle');
+  if (!btns.length) return;
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme');
+      if (!current) {
+        current = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('cyberdeck-theme', next); } catch(e){}
+    });
+  });
+})();
+(function(){
+  
+  var burger = document.querySelector('.nav-burger');
+  var menu = document.getElementById('nav-mobile');
+  if (!burger || !menu) return;
+  var closeBtn = menu.querySelector('.nav-mobile-close');
+
+  function open(){
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden', 'false');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-mobile-open');
+  }
+  function shut(){
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-mobile-open');
+  }
+
+  burger.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', shut);
+  
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', shut);
+  });
+  
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && menu.classList.contains('open')) shut();
+  });
+  
+  window.addEventListener('resize', function(){
+    if (window.innerWidth > 760 && menu.classList.contains('open')) shut();
+  });
+})();
+(function(){
+  var el = document.getElementById('rec-clock');
+  if (!el) return;
+  var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
+  function tick(){
+    var d = new Date();
+    el.textContent = pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+(function(){
+  var at = String.fromCharCode(64);
+  var els = document.querySelectorAll('.obf-email');
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    var u = el.getAttribute('data-u');
+    var d = el.getAttribute('data-d');
+    if (!u || !d) continue;
+    var addr = u + at + d;
+    el.setAttribute('href', 'mailto:' + addr);
+    var txt = el.querySelector('.obf-text');
+    if (txt) txt.textContent = addr;
+  }
+})();
+(function(){
+  
+  
+  
+  var langs = ['bash','sh','shell','zsh','fish'];
+  var sel = langs.map(function(l){ return 'code.language-'+l; }).join(',');
+
+  function span(cls, text) {
+    var s = document.createElement('span');
+    s.className = cls;
+    s.textContent = text;
+    return s;
+  }
+
+  function tokenize(text, firstSlot) {
+    var out = [];
+    var parts = text.split(/(\s+)/);
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      if (p === '') continue;
+      if (/^\s+$/.test(p)) { out.push(document.createTextNode(p)); continue; }
+
+      if (firstSlot) {
+        firstSlot = false;
+        if (!/^[#$()<>|&;`]/.test(p)) { out.push(span('cmd', p)); continue; }
+      }
+
+      if (/^--?[a-zA-Z]/.test(p)) { out.push(span('flag', p)); continue; }
+      if (/^\/[\w.-]/.test(p) || /^~(\/|$)/.test(p) || /^\.\.?\//.test(p)) {
+        out.push(span('path', p));
+        continue;
+      }
+      if (/^[+-]?\d+(\.\d+)?[KMGTPkmgtp]?[Bb]?$/.test(p) && p.length <= 8) {
+        out.push(span('size', p));
+        continue;
+      }
+
+      out.push(document.createTextNode(p));
+    }
+    return out;
+  }
+
+  document.querySelectorAll(sel).forEach(function(code){
+    code.querySelectorAll('.cl').forEach(function(line){
+      var sawFirst = false;
+      var children = Array.from(line.childNodes);
+      children.forEach(function(node){
+        if (node.nodeType !== Node.TEXT_NODE) {
+          if (!sawFirst && node.textContent.trim() !== '') sawFirst = true;
+          return;
+        }
+        var nodes = tokenize(node.textContent, !sawFirst);
+        if (nodes.length === 0) return;
+        if (!sawFirst && nodes.some(function(n){
+          return n.nodeType === Node.ELEMENT_NODE || (n.textContent && n.textContent.trim() !== '');
+        })) sawFirst = true;
+        var frag = document.createDocumentFragment();
+        nodes.forEach(function(n){ frag.appendChild(n); });
+        line.replaceChild(frag, node);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

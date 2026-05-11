@@ -4,8 +4,58 @@
     <title>Tags on sergiu.dev</title>
     <link>https://sergiu.dev/tags/</link>
     <description>Recent content in Tags on sergiu.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>Sergiu Ghitea © 2024 Powered by &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;</copyright><atom:link href="https://sergiu.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en_US</language>
+    <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://sergiu.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Engineering</title>
+      <link>https://sergiu.dev/tags/engineering/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/tags/engineering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Process</title>
+      <link>https://sergiu.dev/tags/process/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/tags/process/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Authorization</title>
+      <link>https://sergiu.dev/tags/authorization/</link>
+      <pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/tags/authorization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Openfga</title>
+      <link>https://sergiu.dev/tags/openfga/</link>
+      <pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/tags/openfga/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>https://sergiu.dev/tags/tutorial/</link>
+      <pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Encryption</title>
+      <link>https://sergiu.dev/tags/encryption/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/tags/encryption/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://sergiu.dev/tags/linux/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/tags/linux/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

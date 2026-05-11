@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Process on sergiu.dev</title>
+    <link>https://sergiu.dev/tags/process/</link>
+    <description>Recent content in Process on sergiu.dev</description>
+    <generator>Hugo</generator>
+    <language>en_US</language>
+    <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://sergiu.dev/tags/process/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Most engineering initiatives don&#39;t fail at execution</title>
+      <link>https://sergiu.dev/posts/shipping-engineering-initiatives/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://sergiu.dev/posts/shipping-engineering-initiatives/</guid>
+      <description>&lt;p&gt;Every initiative I&amp;rsquo;ve watched die looked the same in the post-mortem.&lt;/p&gt;&#xA;&lt;p&gt;Not &amp;ldquo;we chose the wrong stack.&amp;rdquo; Not &amp;ldquo;the team underperformed.&amp;rdquo; It was always some version of: &lt;em&gt;we didn&amp;rsquo;t really understand what we were building until halfway through.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;The interesting part is that this is fixable. It just requires the one step most engineers skip, because it doesn&amp;rsquo;t feel like work.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-work-that-doesnt-look-like-work&#34;&gt;The work that doesn&amp;rsquo;t look like work&lt;/h2&gt;&#xA;&lt;p&gt;Senior engineers spend more time on planning than juniors realize. That&amp;rsquo;s not a slogan, it&amp;rsquo;s a bias I&amp;rsquo;ve watched play out in every team I&amp;rsquo;ve worked with: the most reliable shippers are the ones who appear to be doing nothing for the first week of a project. They&amp;rsquo;re not. They&amp;rsquo;re doing the part that determines whether the next three months go well.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

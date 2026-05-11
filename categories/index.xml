@@ -4,8 +4,8 @@
     <title>Categories on sergiu.dev</title>
     <link>https://sergiu.dev/categories/</link>
     <description>Recent content in Categories on sergiu.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>Sergiu Ghitea © 2024 Powered by &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;</copyright><atom:link href="https://sergiu.dev/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en_US</language>
+    <atom:link href="https://sergiu.dev/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
