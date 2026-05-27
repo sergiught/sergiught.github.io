@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stop pointing your tests at a real Auth0 tenant · sergiu.dev</title>
+<meta name="description" content="auth0-mock is a drop-in mock of Auth0&#39;s HTTP API: real RS256 JWTs, ~400 Management API endpoints, runtime claim and permission injection. Point your service at it with zero code changes." />
+
+<meta property="og:title" content="Stop pointing your tests at a real Auth0 tenant · sergiu.dev" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sergiu.dev/posts/auth0-mock/" />
+<meta property="og:description" content="auth0-mock is a drop-in mock of Auth0&#39;s HTTP API: real RS256 JWTs, ~400 Management API endpoints, runtime claim and permission injection. Point your service at it with zero code changes." />
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://utteranc.es; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; frame-src https://utteranc.es; connect-src 'self' https://api.github.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<script>
+(function(){
+  try {
+    var t = localStorage.getItem('cyberdeck-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch(e){}
+})();
+</script>
+
+
+<link rel="stylesheet" href="/css/fonts.min.58e26fa2c9ba936cf6d1d0cdea6734489c880a988dc04f98f0825654e5607cec.css" integrity="sha256-WOJvosm6k2z20dDN6mc0SJyICpiNwE&#43;Y8IJWVOVgfOw=">
+
+
+<link rel="stylesheet" href="/css/main.min.f2618ecdb1e6115e3d3ab15bf6c91b47adc0f941214e33bad286b71cc9b5595d.css" integrity="sha256-8mGOzbHmEV49OrFb9skbR63A&#43;UEhTjO60oa3HMm1WV0=">
+
+<style>:root{--accent:#c8ff00;--accent-glow:rgba(200,255,0,0.45);--accent-soft:rgba(200,255,0,0.18);}@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--accent:#4a6800;--accent-glow:rgba(74,104,0,0.22);--accent-soft:rgba(74,104,0,0.10);}}[data-theme="dark"]{--accent:#c8ff00;--accent-glow:rgba(200,255,0,0.45);--accent-soft:rgba(200,255,0,0.18);}[data-theme="light"]{--accent:#4a6800;--accent-glow:rgba(74,104,0,0.22);--accent-soft:rgba(74,104,0,0.10);}</style>
+
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:image" content="https://sergiu.dev/og-image.png">
+
+
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+  <div class="col-num">00</div>
+  <a class="brand" href="/">
+    <span class="dot"></span>
+    <b>SERGIU GHITEA</b>
+    <span class="brand-sub">// SOFTWARE ENGINEER</span>
+  </a>
+  <nav class="links"><a href="/posts/"><span class="n">01</span>POSTS</a><a href="/aboutme/"><span class="n">02</span>ABOUT</a><a href="/#contact"><span class="n">03</span>CONTACT</a><button class="theme-toggle" type="button" aria-label="Toggle theme">
+      <span class="t-icon t-icon-dark" aria-hidden="true">◐</span>
+      <span class="t-icon t-icon-light" aria-hidden="true">◑</span>
+      <span class="t-label">THEME</span>
+    </button>
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+  <div class="nav-mobile-head">
+    <span class="brand-mark">
+      <span class="dot"></span>
+      <b>SERGIU GHITEA</b>
+    </span>
+    <button class="nav-mobile-close" type="button" aria-label="Close menu">×</button>
+  </div>
+  <nav class="nav-mobile-links"><a href="/posts/">
+        <span class="n">01</span>
+        <span class="lab">POSTS</span>
+        <span class="arr">→</span>
+      </a><a href="/aboutme/">
+        <span class="n">02</span>
+        <span class="lab">ABOUT</span>
+        <span class="arr">→</span>
+      </a><a href="/#contact">
+        <span class="n">03</span>
+        <span class="lab">CONTACT</span>
+        <span class="arr">→</span>
+      </a></nav>
+  <div class="nav-mobile-foot">
+    <span class="meta"><span class="pulse"></span>SYSTEM ONLINE</span>
+  </div>
+</div>
+
+  <article class="post-page">
+  <div class="col-num">↳</div>
+  <div class="article-wrap">
+    <div class="crumb">
+      <a href="/">HOME</a>
+       / <a href="/posts/">POSTS</a>
+      / <span>STOP POINTING YOUR TESTS AT A REAL AUTH0 TENANT</span>
+    </div>
+    <div class="post-meta">
+      <span>2026.05.27</span>
+      <span>8 MIN READ</span>
+      <span class="ok">// TESTING</span>
+    </div>
+    <h1 class="post-title">Stop pointing your tests at a real Auth0 tenant</h1>
+    
+    <div class="cover-hero"><img src="/images/auth0-mock.jpg" alt="Stop pointing your tests at a real Auth0 tenant" /></div>
+    
+    <div class="content">
+      <p>Your service talks to Auth0. Your tests, therefore, also talk to Auth0.</p>
+<p>That&rsquo;s the moment things start to rot. The test suite needs a tenant. The tenant has rate limits. Two engineers run the suite at once and step on each other&rsquo;s users. CI flakes because a token took 900ms to mint instead of 200ms. Someone hard-codes a fake JWT to skip the network, and now your signature-verification path is the one thing your tests never actually exercise.</p>
+<p>None of this is a bug in Auth0. It&rsquo;s just what happens when a test depends on a live, shared, rate-limited service it doesn&rsquo;t own.</p>
+<p><a href="https://github.com/sergiught/auth0-mock">auth0-mock</a> is the way out. It&rsquo;s a self-contained service that looks and behaves like Auth0 to a calling client. You point your existing code at it instead of <code>https://your-tenant.auth0.com</code>, change nothing else, and your tests stop touching the network.</p>
+<h2 id="what-it-actually-is">What it actually is</h2>
+<p>A single Go binary that speaks Auth0&rsquo;s HTTP API back to you. Four things it does:</p>
+<ul>
+<li><strong>Mints real RS256 JWTs.</strong> Tokens are signed with an in-process key, and the matching JWKS is published at <code>/.well-known/jwks.json</code>. Your consumer SDK validates the signature the normal way: no <code>InsecureSkipVerify</code>, no fake-token kludge, no monkey-patching the one path you most want to test.</li>
+<li><strong>Covers the whole Management API.</strong> It embeds a stripped skeleton of Auth0&rsquo;s OpenAPI document (~400 operations) and routes every endpoint through one generic handler. You stub a response by POSTing <code>{method, path, response}</code> to <code>/admin0/expectations</code>, and the body is checked against that operation&rsquo;s schema on the spot, so a malformed stub fails at registration, not mid-test.</li>
+<li><strong>Shapes runtime state over HTTP.</strong> Custom JWT claims, per-audience permissions, the MFA-required flag, even the clock: all mutable mid-test through <code>/admin0/*</code>. No restart, no config-file shuffle.</li>
+<li><strong>Boots in under a second.</strong> It serves both HTTP (<code>:8080</code>) and HTTPS (<code>:8443</code>).</li>
+</ul>
+<p>The point is the first bullet. Plenty of things can return canned JSON. The thing that&rsquo;s annoying to fake correctly is a <em>real signed token your real verification middleware accepts</em>. That&rsquo;s the part this gets right.</p>
+<h2 id="who-this-is-for">Who this is for</h2>
+<p>Anyone whose service talks to Auth0 in tests or local dev:</p>
+<ul>
+<li><strong>CI pipelines</strong> that need deterministic responses without burning rate limit on a shared tenant.</li>
+<li><strong>Local dev loops</strong> where you&rsquo;d rather not wait on tenant latency or fight over whose test users are whose.</li>
+<li><strong>Integration suites</strong> where you want your real client library exercised end to end, not stubbed out.</li>
+<li><strong>Resilience tests</strong> for the code paths that hit <code>/api/v2/users</code>, <code>/api/v2/clients</code>, <code>/api/v2/roles</code>, and friends, including the unhappy ones.</li>
+<li><strong>Service-to-service</strong> flows using <code>client_credentials</code>, with realistic scopes and a real <code>permissions</code> claim shape.</li>
+</ul>
+<p>It is <em>not</em> a production IdP, not a real RBAC engine, and not a replacement for testing against the real tenant before you ship. It&rsquo;s a test double. A good one.</p>
+<h2 id="quickstart">Quickstart</h2>
+<p>Install it. The release script downloads the goreleaser-built archive and verifies its checksum:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -fsSL https://raw.githubusercontent.com/sergiught/auth0-mock/main/install.sh <span class="p">|</span> bash
+</span></span></code></pre></div><p>Prefer source or Docker?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># from source</span>
+</span></span><span class="line"><span class="cl">make build <span class="o">&amp;&amp;</span> ./bin/auth0-mock
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># docker: pull the published image and run the binary inside it</span>
+</span></span><span class="line"><span class="cl">docker run --rm -p 127.0.0.1:8080:8080 -p 127.0.0.1:8443:8443 ghcr.io/sergiught/auth0-mock:latest
+</span></span></code></pre></div><p>Now the part that matters: proving it behaves like Auth0. Three steps: mint a token, stub a Management API response, call it with the bearer.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. Mint a real signed access token</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>curl -s -X POST http://localhost:8080/oauth/token <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s1">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s1">&#39;grant_type=client_credentials&amp;client_id=demo&amp;client_secret=x&amp;audience=http://localhost:8080/api/v2/&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="p">|</span> jq -r .access_token<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. Stub a Management API response</span>
+</span></span><span class="line"><span class="cl">curl -X POST http://localhost:8080/admin0/expectations <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s1">&#39;{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/api/v2/users/auth0|123&#34;,&#34;response&#34;:{&#34;status&#34;:200,&#34;body&#34;:{&#34;user_id&#34;:&#34;auth0|123&#34;,&#34;email&#34;:&#34;alice@example.com&#34;}}}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. Call the stubbed endpoint with your bearer</span>
+</span></span><span class="line"><span class="cl">curl http://localhost:8080/api/v2/users/auth0%7C123 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s2">&#34;Authorization: Bearer </span><span class="si">${</span><span class="nv">TOKEN</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; {&#34;user_id&#34;:&#34;auth0|123&#34;,&#34;email&#34;:&#34;alice@example.com&#34;}</span>
+</span></span></code></pre></div><p>That token in step 1 is real. Run it through <code>jwt.io</code>, or better, through your own verification middleware against the JWKS at <code>/.well-known/jwks.json</code>. It checks out. Your code calls the mock exactly the way it calls Auth0.</p>
+<p>If you&rsquo;d rather click than curl, run the mock and open <code>http://localhost:8080/docs</code>. Every endpoint is rendered as an interactive reference, and &ldquo;Try it&rdquo; hits the same instance.</p>
+<h2 id="shaping-state-at-runtime">Shaping state at runtime</h2>
+<p>This is where a mock earns its keep over a pile of static fixtures. The interesting bugs live in the <em>variations</em>: the admin claim that flips behavior, the missing scope that should 403, the token that expired between two calls. auth0-mock lets you drive all of that over HTTP, mid-test, no restart.</p>
+<p>Inject a custom claim into every minted token:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X PUT http://localhost:8080/admin0/claims <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s1">&#39;{&#34;role&#34;:&#34;admin&#34;,&#34;org_id&#34;:&#34;o-42&#34;}&#39;</span>
+</span></span></code></pre></div><p>Set the permissions for an audience, so your RBAC checks have something real to read:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X PUT http://localhost:8080/admin0/permissions/https://api.example.com/ <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s1">&#39;[&#34;read:users&#34;,&#34;write:users&#34;]&#39;</span>
+</span></span></code></pre></div><p>Force MFA on the next password grant, the half of the auth flow nobody enjoys testing:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X PUT http://localhost:8080/admin0/mfa-required <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s1">&#39;{&#34;required&#34;:true}&#39;</span>
+</span></span></code></pre></div><p>And the one that quietly saves the most time: control the clock. Freeze it so token <code>iat</code>/<code>exp</code> are deterministic, then advance it to simulate expiry without a single <code>sleep</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Freeze</span>
+</span></span><span class="line"><span class="cl">curl -X PUT http://localhost:8080/admin0/clock <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s1">&#39;{&#34;now&#34;:&#34;2030-01-01T00:00:00Z&#34;}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Jump 7 days forward: your &#34;token expired&#34; path, on demand</span>
+</span></span><span class="line"><span class="cl">curl -X POST http://localhost:8080/admin0/clock/advance <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s1">&#39;{&#34;by&#34;:&#34;168h&#34;}&#39;</span>
+</span></span></code></pre></div><p>Between tests, wipe everything back to zero:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X POST http://localhost:8080/admin0/reset
+</span></span></code></pre></div><p>The whole <code>/admin0/*</code> surface is unauthenticated on purpose, so test setup needs no token plumbing of its own. The flip side: never expose it to an untrusted network. It binds to <code>127.0.0.1</code> by default. Keep it there, inside your CI runner or dev container.</p>
+<h2 id="event-streams-if-you-need-them">Event streams, if you need them</h2>
+<p>If your code consumes Auth0&rsquo;s event streams, <code>GET /api/v2/events</code> is a real Server-Sent Events endpoint. You push events to it from your test, and every connected subscriber sees them live:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># subscribe in one terminal (bearer required)</span>
+</span></span><span class="line"><span class="cl">curl -N -H <span class="s2">&#34;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">     <span class="s1">&#39;http://localhost:8080/api/v2/events?event_type=user.created&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># push from another</span>
+</span></span><span class="line"><span class="cl">curl -X POST http://localhost:8080/admin0/events <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d <span class="s1">&#39;{&#34;type&#34;:&#34;user.created&#34;,&#34;offset&#34;:&#34;0&#34;,&#34;event&#34;:{ ... }}&#39;</span>
+</span></span></code></pre></div><p>There&rsquo;s a bounded replay buffer behind it, so a reconnecting subscriber can resume from <code>Last-Event-ID</code> and catch what it missed. Most people won&rsquo;t reach for this. But if you&rsquo;ve ever tried to test a consumer against a real event stream, you know why having it on tap matters.</p>
+<h2 id="driving-it-from-go">Driving it from Go</h2>
+<p>If your tests are in Go, you don&rsquo;t have to hand-marshal JSON at the <code>/admin0</code> endpoints. There&rsquo;s a typed client:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">TestUserLookup</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">c</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">auth0mock</span><span class="p">.</span><span class="nf">NewClient</span><span class="p">(</span><span class="s">&#34;http://localhost:8080&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">t</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Reset on entry + exit, Verify all constraints at exit, correct LIFO order.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">auth0mocktest</span><span class="p">.</span><span class="nf">Bracket</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Register a stub and demand it&#39;s hit exactly once.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">reg</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">auth0mocktest</span><span class="p">.</span><span class="nf">MustApply</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nf">ExpectGet</span><span class="p">(</span><span class="s">&#34;/api/v2/users/auth0|alice&#34;</span><span class="p">).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nf">Respond</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nf">JSON</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span><span class="p">{</span><span class="s">&#34;user_id&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;auth0|alice&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;email&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;alice@example.com&#34;</span><span class="p">}))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">reg</span><span class="p">.</span><span class="nf">Times</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// ... code under test calls the mock the same way it calls Auth0 ...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p><code>Bracket(t, c)</code> is the one-liner worth remembering: it resets the mock before your test, resets it after, and verifies every hit-count constraint at the end, in the right order, so you don&rsquo;t get the &ldquo;constraint silently dropped&rdquo; footgun. The fluent <code>ExpectGet(...).Respond(...).JSON(...)</code> chain reads like the assertion it is, and <code>.Times(n)</code> / <code>.AtLeast(n)</code> / <code>.AtMost(n)</code> turn &ldquo;this stub should fire&rdquo; into something the test actually checks.</p>
+<p>The SDK only wraps the test-fixture surface. For the Auth0 APIs themselves, you point your existing Auth0 SDK at the mock and let it do its thing.</p>
+<h2 id="where-it-shines">Where it shines</h2>
+<p>The naive case (return a canned user from <code>/api/v2/users/{id}</code>) works with any HTTP stub. auth0-mock pulls ahead when:</p>
+<ul>
+<li><strong>You want the real verification path exercised.</strong> Signature, expiry, issuer, JWKS rotation. A hand-written fake token tests none of it. A real signed token tests all of it.</li>
+<li><strong>The bug is in a variation.</strong> Admin vs. non-admin, scope present vs. missing, token fresh vs. expired. Flipping those over HTTP beats maintaining a fixture per permutation.</li>
+<li><strong>You&rsquo;re testing the SDK integration, not just your handler.</strong> The real client library makes the real calls. You&rsquo;re testing the seam you&rsquo;ll actually ship.</li>
+<li><strong>CI determinism matters.</strong> Same input, same output, no network, no rate limit, no shared-tenant contention.</li>
+</ul>
+<p>If your needs are genuinely simpler than that (one endpoint, one canned response), a plain HTTP stub is fine. The moment auth itself is part of what you&rsquo;re testing, faking it correctly is more work than running this.</p>
+<h2 id="what-it-isnt">What it isn&rsquo;t</h2>
+<p>No free lunch. The honest caveats:</p>
+<ul>
+<li><strong>Audience is echoed, not enforced</strong> by default. The mock mints tokens with whatever <code>audience</code> you ask for and verifies signature, expiry, and issuer, but not that <code>aud</code> matches a registered API. That&rsquo;s deliberate, so tests can swap audiences freely. If your downstream relies on strict <code>aud</code> checks, flip <code>BEARER_REQUIRE_AUDIENCE</code> on in your fixtures.</li>
+<li><strong>It&rsquo;s a structural mock, not Auth0&rsquo;s behavior.</strong> The Management API returns what you tell it to. It doesn&rsquo;t model Auth0&rsquo;s actual business logic, validation quirks, or every error shape. Test against a real tenant before you ship.</li>
+<li><strong>The Management skeleton is structure, not prose.</strong> It embeds the <em>shape</em> of Auth0&rsquo;s spec (paths, methods, schemas) with Auth0&rsquo;s documentation stripped out. Enough to route and validate; not a copy of their docs.</li>
+<li><strong><code>/admin0/*</code> is unauthenticated.</strong> A feature for test ergonomics, a liability if exposed. Keep it on localhost.</li>
+</ul>
+<p>None of these are dealbreakers for a test double. They&rsquo;re the boundaries of what a test double is.</p>
+<h2 id="why-bother">Why bother</h2>
+<p>Auth is one of those dependencies that&rsquo;s invisible until it isn&rsquo;t. Tests that lean on a real tenant feel fine at ten tests and miserable at five hundred: slow, flaky, contended, and quietly skipping the one path (signature verification) you most needed covered.</p>
+<p>Moving that dependency in-process doesn&rsquo;t require rewriting your auth code. You change a base URL. Your SDK keeps making the same calls. The difference is that now the thing on the other end is fast, deterministic, yours, and still hands back tokens your real verification accepts.</p>
+<p>Run the <a href="https://github.com/sergiught/auth0-mock#-quick-start">quickstart</a>. Point one test suite at it. See how much quieter CI gets.</p>
+
+    </div>
+    <div class="post-foot">
+      <span>↳ <a href="/posts/">ALL POSTS</a></span>
+      <span>1633 WORDS</span>
+    </div>
+    
+      <script src="https://utteranc.es/client.js"
+        repo="sergiught/sergiught.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    
+  </div>
+</article>
+
+  <footer>
+  <div class="col-num">04</div>
+  <div class="body">
+    
+      
+      <div class="col">
+        <h4>// SITE</h4>
+        <ul>
+          
+          <li><a href="/">HOME <small>/</small></a></li>
+          
+          <li><a href="/posts/">POSTS <small>/posts</small></a></li>
+          
+          <li><a href="/aboutme/">ABOUT <small>/about</small></a></li>
+          
+        </ul>
+      </div>
+      
+      <div class="col">
+        <h4>// ELSEWHERE</h4>
+        <ul>
+          
+          <li><a href="https://github.com/sergiught" target="_blank" rel="noopener noreferrer">GITHUB <small>↗</small></a></li>
+          
+          <li><a class="obf-email" href="#" data-u="mail" data-d="sergiu.dev" rel="nofollow">EMAIL <small>↗</small></a></li>
+          
+        </ul>
+      </div>
+      
+      <div class="col">
+        <h4>// META</h4>
+        <ul>
+          
+          <li><a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">BUILT WITH <small>Hugo</small></a></li>
+          
+          <li><a href="https://github.com/sergiught/sergiught.github.io" target="_blank" rel="noopener noreferrer">SOURCE <small>↗ GH</small></a></li>
+          
+        </ul>
+      </div>
+      
+    
+    <div class="col end">
+      <span class="word">SERGIU<span class="accent">.dev</span></span>
+      <span class="meta">© 2026 Sergiu Ghitea<br/>Field notes under CC-BY-4.0<br/>Built with <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="baseline">
+  <div class="group">
+    <span><span class="pulse"></span>SYSTEM ONLINE · UPTIME 99.99%</span>
+  </div>
+  <div class="group">
+    <span>BUILT WITH HUGO</span>
+    <span>BUILD 2026.05.27</span>
+  </div>
+</div>
+
+</div>
+<script>
+(function(){
+  
+  var btns = document.querySelectorAll('.theme-toggle');
+  if (!btns.length) return;
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme');
+      if (!current) {
+        current = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('cyberdeck-theme', next); } catch(e){}
+    });
+  });
+})();
+(function(){
+  
+  var burger = document.querySelector('.nav-burger');
+  var menu = document.getElementById('nav-mobile');
+  if (!burger || !menu) return;
+  var closeBtn = menu.querySelector('.nav-mobile-close');
+
+  function open(){
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden', 'false');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-mobile-open');
+  }
+  function shut(){
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-mobile-open');
+  }
+
+  burger.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', shut);
+  
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', shut);
+  });
+  
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && menu.classList.contains('open')) shut();
+  });
+  
+  window.addEventListener('resize', function(){
+    if (window.innerWidth > 760 && menu.classList.contains('open')) shut();
+  });
+})();
+(function(){
+  var el = document.getElementById('rec-clock');
+  if (!el) return;
+  var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
+  function tick(){
+    var d = new Date();
+    el.textContent = pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+(function(){
+  var at = String.fromCharCode(64);
+  var els = document.querySelectorAll('.obf-email');
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    var u = el.getAttribute('data-u');
+    var d = el.getAttribute('data-d');
+    if (!u || !d) continue;
+    var addr = u + at + d;
+    el.setAttribute('href', 'mailto:' + addr);
+    var txt = el.querySelector('.obf-text');
+    if (txt) txt.textContent = addr;
+  }
+})();
+(function(){
+  
+  
+  
+  var langs = ['bash','sh','shell','zsh','fish'];
+  var sel = langs.map(function(l){ return 'code.language-'+l; }).join(',');
+
+  function span(cls, text) {
+    var s = document.createElement('span');
+    s.className = cls;
+    s.textContent = text;
+    return s;
+  }
+
+  function tokenize(text, firstSlot) {
+    var out = [];
+    var parts = text.split(/(\s+)/);
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      if (p === '') continue;
+      if (/^\s+$/.test(p)) { out.push(document.createTextNode(p)); continue; }
+
+      if (firstSlot) {
+        firstSlot = false;
+        if (!/^[#$()<>|&;`]/.test(p)) { out.push(span('cmd', p)); continue; }
+      }
+
+      if (/^--?[a-zA-Z]/.test(p)) { out.push(span('flag', p)); continue; }
+      if (/^\/[\w.-]/.test(p) || /^~(\/|$)/.test(p) || /^\.\.?\//.test(p)) {
+        out.push(span('path', p));
+        continue;
+      }
+      if (/^[+-]?\d+(\.\d+)?[KMGTPkmgtp]?[Bb]?$/.test(p) && p.length <= 8) {
+        out.push(span('size', p));
+        continue;
+      }
+
+      out.push(document.createTextNode(p));
+    }
+    return out;
+  }
+
+  document.querySelectorAll(sel).forEach(function(code){
+    code.querySelectorAll('.cl').forEach(function(line){
+      var sawFirst = false;
+      var children = Array.from(line.childNodes);
+      children.forEach(function(node){
+        if (node.nodeType !== Node.TEXT_NODE) {
+          if (!sawFirst && node.textContent.trim() !== '') sawFirst = true;
+          return;
+        }
+        var nodes = tokenize(node.textContent, !sawFirst);
+        if (nodes.length === 0) return;
+        if (!sawFirst && nodes.some(function(n){
+          return n.nodeType === Node.ELEMENT_NODE || (n.textContent && n.textContent.trim() !== '');
+        })) sawFirst = true;
+        var frag = document.createDocumentFragment();
+        nodes.forEach(function(n){ frag.appendChild(n); });
+        line.replaceChild(frag, node);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

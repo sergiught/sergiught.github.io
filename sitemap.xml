@@ -2,22 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://sergiu.dev/tags/auth0/</loc>
+    <lastmod>2026-05-27T00:30:00+02:00</lastmod>
+  </url><url>
+    <loc>https://sergiu.dev/tags/go/</loc>
+    <lastmod>2026-05-27T00:30:00+02:00</lastmod>
+  </url><url>
+    <loc>https://sergiu.dev/posts/</loc>
+    <lastmod>2026-05-27T00:30:00+02:00</lastmod>
+  </url><url>
+    <loc>https://sergiu.dev/</loc>
+    <lastmod>2026-05-27T00:30:00+02:00</lastmod>
+  </url><url>
+    <loc>https://sergiu.dev/posts/auth0-mock/</loc>
+    <lastmod>2026-05-27T00:30:00+02:00</lastmod>
+  </url><url>
+    <loc>https://sergiu.dev/tags/</loc>
+    <lastmod>2026-05-27T00:30:00+02:00</lastmod>
+  </url><url>
+    <loc>https://sergiu.dev/tags/testing/</loc>
+    <lastmod>2026-05-27T00:30:00+02:00</lastmod>
+  </url><url>
+    <loc>https://sergiu.dev/tags/tutorial/</loc>
+    <lastmod>2026-05-27T00:30:00+02:00</lastmod>
+  </url><url>
     <loc>https://sergiu.dev/tags/engineering/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sergiu.dev/posts/shipping-engineering-initiatives/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://sergiu.dev/posts/</loc>
-    <lastmod>2026-05-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://sergiu.dev/tags/process/</loc>
-    <lastmod>2026-05-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sergiu.dev/</loc>
-    <lastmod>2026-05-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sergiu.dev/tags/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sergiu.dev/tags/authorization/</loc>
@@ -27,9 +42,6 @@
     <lastmod>2026-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sergiu.dev/posts/openfga-primer/</loc>
-    <lastmod>2026-05-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sergiu.dev/tags/tutorial/</loc>
     <lastmod>2026-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sergiu.dev/posts/archlinux/</loc>

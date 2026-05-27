@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Auth0 on sergiu.dev</title>
+    <link>https://sergiu.dev/tags/auth0/</link>
+    <description>Recent content in Auth0 on sergiu.dev</description>
+    <generator>Hugo</generator>
+    <language>en_US</language>
+    <lastBuildDate>Wed, 27 May 2026 00:30:00 +0200</lastBuildDate>
+    <atom:link href="https://sergiu.dev/tags/auth0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stop pointing your tests at a real Auth0 tenant</title>
+      <link>https://sergiu.dev/posts/auth0-mock/</link>
+      <pubDate>Wed, 27 May 2026 00:30:00 +0200</pubDate>
+      <guid>https://sergiu.dev/posts/auth0-mock/</guid>
+      <description>&lt;p&gt;Your service talks to Auth0. Your tests, therefore, also talk to Auth0.&lt;/p&gt;&#xA;&lt;p&gt;That&amp;rsquo;s the moment things start to rot. The test suite needs a tenant. The tenant has rate limits. Two engineers run the suite at once and step on each other&amp;rsquo;s users. CI flakes because a token took 900ms to mint instead of 200ms. Someone hard-codes a fake JWT to skip the network, and now your signature-verification path is the one thing your tests never actually exercise.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

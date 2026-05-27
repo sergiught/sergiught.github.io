@@ -6,8 +6,36 @@
     <description>Recent content in Tags on sergiu.dev</description>
     <generator>Hugo</generator>
     <language>en_US</language>
-    <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 May 2026 00:30:00 +0200</lastBuildDate>
     <atom:link href="https://sergiu.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Auth0</title>
+      <link>https://sergiu.dev/tags/auth0/</link>
+      <pubDate>Wed, 27 May 2026 00:30:00 +0200</pubDate>
+      <guid>https://sergiu.dev/tags/auth0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go</title>
+      <link>https://sergiu.dev/tags/go/</link>
+      <pubDate>Wed, 27 May 2026 00:30:00 +0200</pubDate>
+      <guid>https://sergiu.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Testing</title>
+      <link>https://sergiu.dev/tags/testing/</link>
+      <pubDate>Wed, 27 May 2026 00:30:00 +0200</pubDate>
+      <guid>https://sergiu.dev/tags/testing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>https://sergiu.dev/tags/tutorial/</link>
+      <pubDate>Wed, 27 May 2026 00:30:00 +0200</pubDate>
+      <guid>https://sergiu.dev/tags/tutorial/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Engineering</title>
       <link>https://sergiu.dev/tags/engineering/</link>
@@ -34,13 +62,6 @@
       <link>https://sergiu.dev/tags/openfga/</link>
       <pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate>
       <guid>https://sergiu.dev/tags/openfga/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tutorial</title>
-      <link>https://sergiu.dev/tags/tutorial/</link>
-      <pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://sergiu.dev/tags/tutorial/</guid>
       <description></description>
     </item>
     <item>
